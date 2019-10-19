@@ -1,0 +1,20 @@
+.row {
+    display: flex;
+}
+
+.navbar {
+    height: 80px;
+}
+
+.navbar-brand {
+    float: none;
+    margin: auto;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+#search-city {
+    background: rgb(137, 137, 230);
+}
