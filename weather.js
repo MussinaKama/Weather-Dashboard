@@ -7,26 +7,20 @@ $("#search-city").on("click", function (event) {
     localStorage.setItem("city", city);
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b72b06e94024103dcc49ba18cc9af972";
     
+    
     $.ajax({
     url: queryURL,
     method: "GET"
     }).then(function(response) {
         console.log(response)
-
+    var urlForIndex = "https://api.openweathermap.org/data/2.5/uvi/forecast?appid=b72b06e94024103dcc49ba18cc9af972&lat=" + response.coord.lat + "&lon=" + response.coord.lon +"&cnt=" + 1;
     var cityDiv =$("<div class='city'>");
-    var cityName = response.name;
-    var h1 = $("<h1>").html(cityName + " (" + moment().format("L") + ")" + "<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
-    cityDiv.append(h1);
-    var temperature = response.main.temp;
-    var pTwo = $("<p>").html("Temperature: " + Math.round((temperature - 273.15) * 1.80 + 32) + " ℉");
-    cityDiv.append(pTwo);
-    var humidity = response.main.humidity;
-    var pThree = $("<p>").html("Humidity: " + humidity + " %");
-    cityDiv.append(pThree);
-    var windSpeed = response.wind.speed;
-    var pFour = $("<p>").html("Wind speed: " + windSpeed + " MPH");
-    cityDiv.append(pFour);
-  
+    var h1 = $("<h1>").html(response.name + " (" + moment().format("L") + ")" + "<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+    var pTwo = $("<p>").html("Temperature: " + Math.round((response.main.temp - 273.15) * 1.80 + 32) + " ℉");
+    var pThree = $("<p>").html("Humidity: " + response.main.humidity + " %");
+    var pFour = $("<p>").html("Wind speed: " + response.wind.speed + " MPH");
+    var indexOfUv = $("<p>").html("UV Index: " + urlForIndex["value"]);
+    cityDiv.append(h1, pTwo, pThree, pFour, indexOfUv);
     $("#city-view").prepend(cityDiv);
     
     })
@@ -34,7 +28,7 @@ $("#search-city").on("click", function (event) {
     fiveDayForecast(city);
 
     var button = $("<button>").addClass("buttons");
-    button.prepend(localStorage.getItem("city"))
+    button.prepend(localStorage.getItem("city"));
     $("#search-history").append(button);
     
 })
