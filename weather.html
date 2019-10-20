@@ -19,23 +19,25 @@
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-3" id="search-wrapper">
                 <div class="form-group">
-                    <label for="city-input">Search for a City</label>
+                    <label for="city-input"><strong>Search for a City</strong></label>
                     <input type="text" id="city-input">
                     <button class="search" id="search-city">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
+                <div id="search-history"></div>
             </div>
-
-            <div class="col-lg-6">
+            
+            <div class="col-9" id="weather-wrapper">
                 <div class="row">
                     <div id="city-view"></div>
                 </div>
-                <div class="row">
-                    <div class="forecast-view">5-Day Forecast:</div>
-                </div>
+                    <div class="row">
+                        <div id="text">5-Day Forecast:</div>
+                        <div class="forecast-view"></div>
+                    </div>
             </div>
         </div>
     </div>

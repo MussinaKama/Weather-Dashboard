@@ -2,6 +2,7 @@
 
 $("#search-city").on("click", function (event) {
     event.preventDefault();
+    $("#city-view").empty();
     var city = $("#city-input").val().trim();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b72b06e94024103dcc49ba18cc9af972";
     
@@ -32,8 +33,6 @@ $("#search-city").on("click", function (event) {
     
 })
 
-
-
 function fiveDayForecast (city) {
     var queryURL5 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=b72b06e94024103dcc49ba18cc9af972";
     $.ajax({
@@ -41,70 +40,31 @@ function fiveDayForecast (city) {
         method: "GET"
     }).then(function(forecast) {
         console.log(forecast);
-    
+        $(".forecast-view").empty();
         
         var time = "12:00:00";
-        
         for (var i = 0; i < forecast.list.length; i ++) {
             var forecastTime = forecast.list[i].dt_txt;
             console.log(forecastTime)
             if (forecastTime.indexOf(time) !== -1) {
-                pOne = $("<p>").html("<img src='http://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + ".png' alt='Icon depicting current weather'>") 
-                pTwo = $("<p>").html("Temp: " + Math.round((forecast.list[i].main.temp - 273.15) * 1.80 + 32) + " ℉");
-                pThree = $("<p>").html("Humidity: " + forecast.list[i].main.humidity + " %");
                 
-                $(".forecast-view").append(pOne, pTwo, pThree);
-            
+                var splitDate = forecast.list[i].dt_txt.split(" ");
+                var newDate = splitDate[0].slice(0, 10).split("-");
+                cardDiv = $("<div>").addClass("card");
+                pOne = $("<p>").html(newDate[1] + "/" + newDate[2] + "/" + newDate[0]);
+                pTwo = $("<p>").html("<img src='http://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + ".png' alt='Icon depicting current weather'>") 
+                pThree = $("<p>").html("Temp: " + Math.round((forecast.list[i].main.temp - 273.15) * 1.80 + 32) + " ℉");
+                pFour = $("<p>").html("Humidity: " + forecast.list[i].main.humidity + " %");
+                cardDiv.append(pOne, pTwo, pThree, pFour);
+                $(".forecast-view").append(cardDiv);
+                
             }
-
-           
-    
-        // var cardDiv1 = $("<div>");
-        // var p1 = $("<p>").html(forecastDate[0]);
-        // // // var p2 = $("<p>").html("<img src='http://openweathermap.org/img/w/" + forecastIcon[0] + ".png' alt='Icon depicting current weather.'>");
-        // var p3 = $("<p>").html(forecastTemp[0] + " F");
-        // var p4 = $("<p>").html(forecastHumidity[0] + " %")
-        // cardDiv1.append(p3, p4);
-        // $("#forecast-view").html(cardDiv1);
         }
-
     })
-
 }
 
 
 
 
 
-    // var forecastDiv = $("<div class='card'");
-    // var p1 = $("<p>").html("<img src='http://openweathermap.org/img/w/" + forecast.list[0].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
-    // forecastDiv.append(p1);
-    // var tempDiv = forecast.list[0].main.temp;
-    // var p2 = $("<p>").html("Temp: " + Math.round((tempDiv - 273.15) * 1.80 + 32) + " ℉");
-    // forecastDiv.append(p2);
-    // var humidityDiv = forecast.list[0].main.humodity;
-    // var p3 = $("<p>").html("Humidity: " + humidityDiv + " %");
-    // forecastDiv.append(p3);
-    // $("#forecast-view").prepend(forecastDiv);
-   // })
-
-
-    //     var forecastDate = [];
-        
-    //     // // var forecastIcon = [];
-    //     // var forecastTemp = [];
-    //     // var forecastHumidity = [];
-        
-    //     
-    //         if ( === tomorrow's date) {
-    //             forecastDate.push(forecast.list[i])
-    //         }
-    //         forecastDate.push(forecast.list[i].dt_txt);
-    //         console.log(forecastDate)
-    //     //     // forecastIcon.push(response.list[i].weather[0].icon);
-    //     // forecastTemp.push(forecastEl.main.temp);
-    //     // forecastHumidity.push(forecastEl.main.humidity);
-    //     }
-    // })
-       
         

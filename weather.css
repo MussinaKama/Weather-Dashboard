@@ -1,7 +1,7 @@
-.row {
-    display: flex;
+.container {
+    width: 100%;
+    
 }
-
 .navbar {
     height: 80px;
 }
@@ -15,11 +15,54 @@ h1 {
     font-size: 30px;
 }
 
-#search-city {
-    background: rgb(137, 137, 230);
+#city-view {
+    margin-bottom: 20px;
 }
 
-.forecast-view {
+#search-city {
+    background: blue;
+    border-radius: 5px;
+    border-color: lightblue;
+    width: 35px;
+    height: 35px;
+
+}
+#city-input {
+    border: 2px solid lightgray;
+    height: 35px;
+    border-radius: 4px;
+}
+
+.search i {
+    color: white;
+}
+
+#text {
     font-size: 20px;
     font-weight: bold;
 }
+
+.card {
+ float: left;
+ background: blue;
+ color: white;
+ margin-right: 20px;
+ padding: 10px;
+}
+
+.forecast-view {
+ margin-top: 10px;
+}
+
+#search-wrapper {
+    background: #ebebeb;
+    height: 600px;
+    width: 100%; 
+    border: 1px solid lightgray;
+}
+
+#weather-wrapper {
+    padding-left: 70px;
+    border: 1px solid lightgray;
+}
+
