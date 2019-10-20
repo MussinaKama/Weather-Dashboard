@@ -18,3 +18,8 @@ h1 {
 #search-city {
     background: rgb(137, 137, 230);
 }
+
+.forecast-view {
+    font-size: 20px;
+    font-weight: bold;
+}
