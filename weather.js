@@ -4,6 +4,7 @@ $("#search-city").on("click", function (event) {
     event.preventDefault();
     $("#city-view").empty();
     var city = $("#city-input").val().trim();
+    localStorage.setItem("city", city);
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=b72b06e94024103dcc49ba18cc9af972";
     
     $.ajax({
@@ -27,9 +28,14 @@ $("#search-city").on("click", function (event) {
     cityDiv.append(pFour);
   
     $("#city-view").prepend(cityDiv);
+    
     })
-
+    
     fiveDayForecast(city);
+
+    var button = $("<button>").addClass("buttons");
+    button.prepend(localStorage.getItem("city"))
+    $("#search-history").append(button);
     
 })
 
