@@ -51,11 +51,11 @@ function fiveDayForecast (city) {
                 var splitDate = forecast.list[i].dt_txt.split(" ");
                 var newDate = splitDate[0].slice(0, 10).split("-");
                 cardDiv = $("<div>").addClass("card");
-                pOne = $("<p>").html(newDate[1] + "/" + newDate[2] + "/" + newDate[0]);
+                hFive = $("<h5>").html(newDate[1] + "/" + newDate[2] + "/" + newDate[0]);
                 pTwo = $("<p>").html("<img src='http://openweathermap.org/img/w/" + forecast.list[i].weather[0].icon + ".png' alt='Icon depicting current weather'>") 
                 pThree = $("<p>").html("Temp: " + Math.round((forecast.list[i].main.temp - 273.15) * 1.80 + 32) + " ℉");
                 pFour = $("<p>").html("Humidity: " + forecast.list[i].main.humidity + " %");
-                cardDiv.append(pOne, pTwo, pThree, pFour);
+                cardDiv.append(hFive, pTwo, pThree, pFour);
                 $(".forecast-view").append(cardDiv);
                 
             }
