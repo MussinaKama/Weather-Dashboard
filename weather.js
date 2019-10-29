@@ -13,7 +13,7 @@ $("#search-city").on("click", function (event) {
     method: "GET"
     }).then(function(response) {
         console.log(response)
-    var urlForIndex = "https://api.openweathermap.org/data/2.5/uvi/forecast?appid=b72b06e94024103dcc49ba18cc9af972&lat=" + response.coord.lat + "&lon=" + response.coord.lon +"&cnt=" + 1;
+    var urlForIndex = "https://api.openweathermap.org/data/2.5/uvi/appid=b72b06e94024103dcc49ba18cc9af972&lat=" + response.coord.lat + "&lon=" + response.coord.lon +"&cnt=" + 1;
     var cityDiv =$("<div class='city'>");
     var h1 = $("<h1>").html(response.name + " (" + moment().format("L") + ")" + "<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
     var pTwo = $("<p>").html("Temperature: " + Math.round((response.main.temp - 273.15) * 1.80 + 32) + " ℉");
